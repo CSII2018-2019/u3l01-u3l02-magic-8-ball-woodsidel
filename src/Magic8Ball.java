@@ -3,10 +3,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
@@ -58,10 +62,26 @@ public class Magic8Ball extends JFrame{
 			
 			Font shakeFont = new  Font ("Broadway", Font.BOLD, 32);
 			shake.setFont(shakeFont);
-		
-		
 			
-	}
+
+			
+			//action listener
+			shake.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String input = JOptionPane.showInputDialog("What do you want the Magic 8 Ball to prophecize?");
+				String newFortune = fortune();
+				JOptionPane.showMessageDialog(null, "Your prophecy for '"+input+"' is: "+newFortune);
+					
+				}
+
+			public String fortune() {
+				String [] fortunes = {"It is certain","It is decidedly so","Without a doubt","Yes - definitely","You may rely on it","As I see it, yes","Most likely","Outlook good","Yes","Signs point to yes","Reply hazy, try again","Ask again later","Better not tell you now","Cannot predict now","Concentrate and ask again","Don't count on it","My reply is no","My sources say no","Outlook not so good","Very doubtful"};			
+				int rnd = new Random().nextInt(fortunes.length);
+			    return fortunes[rnd];
+			}});
+				
+			
+			}
 	
 
 
